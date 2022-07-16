@@ -1,0 +1,4 @@
+#!/bin/sh
+
+picom --experimental-backends > /dev/null &
+disown picom

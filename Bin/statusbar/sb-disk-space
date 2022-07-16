@@ -1,0 +1,19 @@
+#!/bin/env bash
+
+. sb-theme
+
+while read -a Line; do
+    # if [ "${Line[5]}" == '/' ]; then
+    #     root_size=${Line[1]}
+    #     root_free=${Line[3]}
+    # fi
+    if [ "${Line[5]}" == '/home' ]; then
+        home_size=${Line[1]}
+        home_free=${Line[2]}
+        home_percent=${Line[4]}
+        break
+    fi
+done <<< "$(df -h -x devtmpfs -x tmpfs -x usbfs -x loop)"
+
+# display " $root_free/$root_size|$home_free/$home_size" $1
+display " $home_free/$home_size $home_percent" $1

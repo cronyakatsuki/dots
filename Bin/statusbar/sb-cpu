@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+import psutil
+
+usage = psutil.cpu_percent(interval=1)
+
+# if usage > 30.0:
+#     color="#da8548"
+# elif usage >= 70.0:
+#     color="#ff6c6b"
+# else:
+#     color="#5699af"
+
+# def print_color(str):
+#     print(f"^c{color}^{str}^d^")
+
+# print_color(f" {usage}%")
+
+print(f"[ {usage}%]")

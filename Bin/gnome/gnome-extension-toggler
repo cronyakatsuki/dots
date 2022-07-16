@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# a simple script to toggle of unneeded extension while playing games for example
+
+# set your custom icon here
+
+list=$(gnome-extensions list)
+
+for line in $list; do
+   [ "$line" != "gamemode@christian.kellner.me" ] && [ "$line" != "cosmic-dock@system76.com" ] && [ "$line" != "pop-cosmic@system76.com" ] && [ "$line" != "ding@rastersoft.com" ] && [ "$line" != "pop-shell@system76.com" ] && [ "$line" != "system76-power@system76.com" ] && [ "$line" != "ubuntu-appindicators@ubuntu.com" ] && [ "$line" != "appindicatorsupport@rgcjonas.gmail.com" ] && [ "$line" != "apps-menu@gnome-shell-extensions.gcampax.github.com" ] && [ "$line" != "places-menu@gnome-shell-extensions.gcampax.github.com" ] && [ "$line" != "user-theme@gnome-shell-extensions.gcampax.github.com" ] && [ "$line" != "background-logo@fedorahosted.org" ] && [ "$line" != "window-list@gnome-shell-extensions.gcampax.github.com" ] || continue
+   state=$(gnome-extensions info $line | grep 'State' | awk '{ print $2 }')
+   [ "$state" = "ENABLED" ] && gnome-extensions disable $line || gnome-extensions enable $line
+done
+
+state=$(gnome-extensions info "gamemode@christian.kellner.me" | grep 'State' | awk '{ print $2 }')
+
+[ "$state" = "ENABLED" ] && notify-send "Extension Toggler" "Enabled disabled extensions" -u normal -i "$icon" || notify-send "Extension Toggler" "Disabled unneeded extensions" -u normal -i "$icon"

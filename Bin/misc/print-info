@@ -1,0 +1,13 @@
+#!/bin/env bash
+
+for File in /etc/{lsb,os}-release; {
+    [ -f "$File" ] || continue
+
+    while read Line; do
+        printf "%s\n" "$Line"
+    done < "$File"
+}
+
+[ -f /proc/version ] || exit
+read -a Line < /proc/version
+printf 'KERNEL=%s\n' "${Line[2]}"

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#a basic script to quickly send a notification with a image or set dmenu status if no dunst ;)
+
+# if [ $(pgrep -cx dunst) = '0' ] && [ $(pgrep -cx awesome) = '0' ]  ; then
+#     dwm -s "$1 / $2"
+# else
+notify-send "$1" "$2" -u normal -i "$HOME/Pictures/logo.png"
+# fi

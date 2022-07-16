@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# kill all acpi_listen proccesses just in case
+killall acpi_listen
+
+acpi_listen | while read -r Line; do
+    case $Line in
+        "jack/headphone HEADPHONE"*) sb-volume-update notify; polybar-msg action "#volume.hook.0";;
+        "ac_adapter ACPI0003:00"*) bat-notify;;
+    esac
+done

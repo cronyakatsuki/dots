@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# kern="$(uname -r)"
+# echo "$kern"
+
+printf '%s\n' "$(uname -r)"

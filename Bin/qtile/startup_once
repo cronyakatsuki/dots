@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# run a fix for nvidia optimus laptops
+optimus-fix.sh
+
+# run my messaging apps
+ferdium &
+disown $@
+discord --start-minimized &
+disown $@

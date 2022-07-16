@@ -1,0 +1,107 @@
+##---BSPWM Bindings---##
+
+# System turn off
+super + shift + e
+    dmenu-power-menu
+
+# Quit bsowm
+super + ctrl + e
+    quit.sh
+
+# Restart bspwm
+super + shift + r
+    bspc wm -r
+
+# Close current window
+super + shift + q
+    xdo close
+
+# Focus on window in direction
+super + {Left,Down,Up,Right}
+    bspc node -f {west,south,north,east}
+
+#	Send window to desktop
+super + shift + {1-9}
+    bspc node -d {1-9} 
+
+# Send window to desktop and swap to desktop
+super + control + {1-9}
+    bspwm_send {1-9}
+
+# Toggle floating on and off
+super + shift + space
+    bspc node focused.tiled -t floating || bspc node focused.floating -t tiled
+
+# Swap window with direction
+super + shift + {Left,Down,Up,Right}
+    bspc node -s {west,south,north,east}
+
+# Focus on desktop
+super + {1-9}
+    bspc desktop -f {1-9}
+
+# Last used workspace/window
+{super,alt} + Tab
+    bspc {desktop,node} -f last
+
+# Cycle trought windows/workspaces
+{super,alt} + space
+    bspc {desktop,node} -f next.local
+
+# Fullscreen toggle
+super + F11
+    bspc node -t \~fullscreen
+
+##---System Control---##
+
+# Audio Control
+{XF86AudioRaiseVolume,XF86AudioLowerVolume,XF86AudioMute}
+    sb-volume-update { up, down, mute } && polybar-msg action "#volume.hook.0"
+
+# Brightness
+{XF86MonBrightnessUp,XF86MonBrightnessDown}
+    sb-backlight-update { up, down } && polybar-msg action "#backlight.hook.0"
+
+# Player control keybindings
+{XF86AudioPlay,XF86AudioPrev,XF86AudioNext}
+    playerctl {play-pause,previous,next}
+
+##---Application Launchers---##
+
+# Gui Programs
+super + {Return,b}
+    {$TERMINAL,$BROWSER}
+
+# Gui Programs
+super + shift + {f,l}
+    {pcmanfm, betterlockscreen -l blur}
+
+# Gui Programs
+super + ctrl + f
+    gparted
+
+# Terminal Programs
+super + {f,h,n,w,t,p,m}
+    $TERMINAL -e {lfrun,htop,newsboat,adl,trackma-curses,pulsemixer,neomutt}
+
+# Terminal Programs
+super + shift + {t}
+    $TERMINAL -e {tremc}
+
+##---Dmenu bindings---#
+
+super + {d,l,F12,g,r,o,e}
+    {dmenu_run, dmenu-file-handler ~/Lightnovels, dmenu-ryzenadj, dmenu-games, dmenu-programs, dmenu-link-handler, dmenu-configs}
+
+super + shift + {c, k, u, n, d}
+    {clipmenu -l 10, dmenu-kill, dmenu-usb-man, dmenu-wifi, dmenu-dl-manager}
+
+super + ctrl + g
+    dmenu-ryzenadj-prof-manager ~/Documents/ryzenadj-profiles/
+
+Print
+    dmenu-screenshot
+
+##---Gaming bindings---##
+super + {shift, ctrl} + F12
+    {gamemode_start, gamemode_end}

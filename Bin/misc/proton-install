@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Simple script to install stuff using proton-ge package on arch linux for the old installer or gog games.
+
+WINEPREFIX="$1" STEAM_COMPAT_DATA_PATH="$1" proton "$2"

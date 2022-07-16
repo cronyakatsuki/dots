@@ -1,0 +1,16 @@
+#!/bin/env bash
+
+# free -h --mega | awk '/^Mem:/ {print $3 "/" $2}'
+
+. sb-theme
+
+while read -a Line; do
+    if [ "${Line[0]}" == 'Mem:' ]; then
+        Total=${Line[1]}
+        Used=${Line[2]}
+
+        break
+    fi
+done <<< "$(free -h --mega)"
+
+display " $Used/$Total" "$1"

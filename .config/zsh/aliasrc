@@ -1,0 +1,58 @@
+#!/bin/sh
+
+# Config by
+  # ____                            _    _         _             _    _
+ # / ___|_ __ ___  _ __  _   _     / \  | | ____ _| |_ ___ _   _| | _(_)
+# | |   | '__/ _ \| '_ \| | | |   / _ \ | |/ / _` | __/ __| | | | |/ / |
+# | |___| | | (_) | | | | |_| |  / ___ \|   < (_| | |_\__ \ |_| |   <| |
+ # \____|_|  \___/|_| |_|\__, | /_/   \_\_|\_\__,_|\__|___/\__,_|_|\_\_|
+                       # |___/
+
+# Config file aliases
+alias zshrc='${=EDITOR} ~/.zshrc' # Quick access to zsh config
+alias zshenv='${=EDITOR} ~/.zshenv' # Quick acces to zsh enviroment settings
+alias termconf='${=EDITOR} ~/.config/alacritty/alacritty.yml' # Quick acces terminal config
+alias polyconf='${=EDITOR} ~/.config/polybar/config.ini' # Quick acces to polybar config
+alias aliasrc='${=EDITOR} ~/.aliasrc' # Quick acces to alias config
+alias bspwmrc='${=EDITOR} ~/.config/bspwm/bspwmrc' # Quick acces to bspwm config
+alias virc='${=EDITOR} ~/.config/nvim/init.lua' # Quick acces to nvim config
+alias picomconf='${=EDITOR} ~/.config/picom/picom.conf'
+alias lfrc='${=EDITOR} ~/.config/lf/lfrc'
+alias sxhkdrc='${=EDITOR} ~/.config/sxhkd/sxhkdrc'
+
+# Program alias
+alias ssd-check="sudo smartctl -a /dev/nvme0n1 | grep -E -- 'Data Units Read:|Data Units Written:|Percentage Used:'"
+alias grep='grep --color=auto'
+alias vi='nvim'
+alias ls='exa -al --color=always --group-directories-first' # my preferred listing
+alias la='exa -a --color=always --group-directories-first'  # all files and dirs
+alias lt='exa -aT --color=always --group-directories-first' # tree listing
+alias df='df -h -x devtmpfs -x tmpfs -x usbfs -x loop'                          # human-readable sizes
+alias free='free -m -h'                      # show sizes in MB
+alias spotdl='spotdl --output-format ogg -p "{artists}/{album}/{artist} - {title}.{ext}" --dt 8 --st 8'
+# alias xmrig='sudo xmrig -c ~/.config/xmrig.json'
+alias pacman-rm-orphans='sudo pacman -Rns $(pacman -Qtdq)'
+
+# cleaup
+alias mbsync=mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc
+
+# Function aliases
+alias yta='yt-dlp -x -f bestaudio --external-downloader aria2c --external-downloader-args "-j 16 -s 16 -x 16 -k 5M" --audio-format vorbis -o "%(title)s.%(ext)s"'
+alias ytvb='yt-dlp --merge-output-format mp4 -f "bestvideo+bestaudio[ext=m4a]/best" --embed-thumbnail --external-downloader aria2c --external-downloader-args "-j 16 -s 16 -x 16 -k 5M" --add-metadata -o "%(title)s.%(ext)s"'
+alias ytvf='yt-dlp --merge-output-format mp4 --format best --embed-thumbnail --external-downloader aria2c --external-downloader-args "-j 16 -s 16 -x 16 -k 5M" --add-metadata -o "%(title)s.%(ext)s"'
+
+alias dl='aria2c -j 16 -s 16 -x 16 -k 5M --file-allocation=none'
+alias lf='lf-run $@'
+
+# functions
+fcd () {
+    cd "$(find -type d | fzf)"
+}
+
+fopen () {
+    xdg-open "$(find -type f | fzf)"
+}
+
+frm () {
+    rm -r $(find -iname "$@" | fzf)
+}

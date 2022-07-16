@@ -1,0 +1,52 @@
+#!/bin/env bash
+
+# simple script to take a list of path in system of
+# git repos then doing specified action for it
+
+starting_dir=$(pwd)
+
+Push () {
+    cd $Path
+    [ -z "$(git status -s)" ] && printf '\n%s\n' "Repo $Path already up to date." && return
+
+    printf '\n%s\n' "In repo $Path"
+
+    while [ ! -z "$(git status -s)" ]; do
+        git status -s
+        read -p '\nWrite files to add: ' files < /dev/tty
+
+        git add $files
+
+        read -p '\nCommit message: ' message < /dev/tty
+        git commit -m "$message"
+    done
+
+    git push
+
+    printf '\n%s\n' "Repo $Path pushed completely."
+}
+
+Pull () {
+    cd $Path
+
+    printf '\n%s\n' "In repo $Path"
+
+    git pull
+
+    printf '\n%s\n' "Repo $Path updated."
+}
+
+while read -a Line; do
+    Action=${Line[0]}
+    Path=${Line[1]}
+
+    if [ "$Action" = "push" ]; then
+        Push
+    fi
+
+    if [ "$Action" = "pull" ]; then
+        Pull
+    fi
+done <<< "$(< $HOME/.config/gupdate/repos)"
+
+cd "$starting_dir"

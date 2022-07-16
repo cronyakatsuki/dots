@@ -1,0 +1,54 @@
+{
+    "spacing": 4,
+    "modules-left": ["river/tags", "river/mode"],
+    /* "modules-center": ["river/window"], */
+    "modules-right": ["custom/optimus", "cpu", "custom/cpu-temp", "memory", "disk", "battery", "network", "clock", "tray"],
+    // Modules configuration
+    "river/tags": {
+        "format": "{name}",
+        "tag-labels": ["一","二","三","四","五","六","七","八","九"]
+    },
+    "custom/optimus": {
+        "exec": "sb-optimus",
+        "interval": "once",
+    },
+    "tray": {
+        "icon-size": 21,
+        /* "spacing": 5 */
+    },
+    "clock": {
+        "tooltip": false,
+        "format": " {:%d.%m %H:%M}",
+        "interval": 20,
+    },
+    "cpu": {
+        "format": " {usage}%",
+        "interval": 6,
+        "tooltip": false,
+    },
+    "memory": {
+        "format": " {}%",
+        "tooltip": false,
+    },
+    "custom/cpu-temp": {
+        "exec": "sb-cpu-temp",
+        "interval": 4,
+    },
+    "battery": {
+        "tooltip": false,
+        "format": "{icon} {capacity}%",
+        "format-icons": [" ", " ", " ", " ", " "],
+        "interval": 30,
+    },
+    "network": {
+        "format-wifi": "  {signalStrength}%",
+        "tooltip": false,
+        "format-disconnected": "⚠ Disconnected",
+        "interval": 10,
+    },
+    "disk": {
+        "interval": 500,
+        "format": " {used}/{total} {percentage_free}%",
+        "path": "/"
+    }
+}

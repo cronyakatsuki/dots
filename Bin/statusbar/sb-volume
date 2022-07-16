@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Prints the current volume or 🔇 if muted.
+
+. sb-theme
+
+[ $(pamixer --get-mute) = true ] && echo ﱝ && exit
+
+vol="$(pamixer --get-volume)"
+
+if [ "$vol" -gt "65" ]; then
+	icon=""
+elif [ "$vol" -lt "30" ]; then
+	icon=""
+else
+	icon=""
+fi
+
+display "$icon $vol%" "$1" "$vol"

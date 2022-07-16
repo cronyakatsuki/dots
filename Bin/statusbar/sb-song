@@ -1,0 +1,7 @@
+#!/bin/sh
+
+while true
+do
+    printf '%s\n' "$(mpc current)"
+    mpc idle player > /dev/null
+done

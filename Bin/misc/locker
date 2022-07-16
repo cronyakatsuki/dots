@@ -1,0 +1,5 @@
+#!/bin/sh
+
+lock &
+sleep 2
+xset dpms force off

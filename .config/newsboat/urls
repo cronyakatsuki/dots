@@ -1,0 +1,66 @@
+# Config by
+  # ____                            _    _         _             _    _
+ # / ___|_ __ ___  _ __  _   _     / \  | | ____ _| |_ ___ _   _| | _(_)
+# | |   | '__/ _ \| '_ \| | | |   / _ \ | |/ / _` | __/ __| | | | |/ / |
+# | |___| | | (_) | | | | |_| |  / ___ \|   < (_| | |_\__ \ |_| |   <| |
+ # \____|_|  \___/|_| |_|\__, | /_/   \_\_|\_\__,_|\__|___/\__,_|_|\_\_|
+                       # |___/
+
+#starred articles
+# ctrl-e to flag, s-enter to star it, to remove, ctrl-e, delete the flag char
+"query:Starred:flags # \"s\""
+"query:Unread:unread = \"yes\""
+
+# (Update news)
+https://www.archlinux.org/feeds/news/ "~Arch news" "(Update news)"
+https://bugs.archlinux.org/feed.php?feed_type=rss1&project=1 "~Arch Bug Tracker" "(Update news)"
+
+#---Youtube---#
+
+# Comedy
+https://www.youtube.com/feeds/videos.xml?channel_id=UCR4s1DE9J4DHzZYXMltSMAg "~HowToBasic" "(YouTube 'Comedy')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCmNyIHAURFnq_bsxZk7vRRw "~Kajus" "(YouTube 'Comedy')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCQoepmGP47BwoH2kUazt-HA "~KakoLako" "(YouTube 'Comedy')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC_2Pifpk981bmvM69nhM6qg "~Scorpo" "(YouTube 'Comedy')"
+
+# Genereal knowlegde
+https://www.youtube.com/feeds/videos.xml?channel_id=UCsXVk37bltHxD1rDPwtNM8Q "~Kurzgesagt – In a Nutshell" "(YouTube 'General Knowledge')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCBa659QWEk1AI4Tg--mrJ2A "~Tom Scott" "(YouTube 'General Knowledge')"
+
+# Tech
+https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw "~Linus Tech Tips" "(YouTube 'Tech')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCdBK94H6oZT2Q7l0-b0xmMg "~ShortCircuit" "(YouTube 'Tech')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCeeFfhMcJa1kjtfZAGskOCA "~TechLinked" "(YouTube 'Tech')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC0vBXGSyV14uvJ4hECDOl0Q "~Techquickie" "(YouTube 'Tech')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UChHxJaKDqH4bOs0pX3hkKnA "~Basically Homeless" "(YouTube 'Tech')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCS-WzPVpAAli-1IfEG2lN8A "~Michael MJD" "(YouTube 'Tech')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCgRaK4A7yi4ZELCLUjdP_pg "~TechDweeb" "(YouTube 'Tech')"
+
+# Gaming General
+https://www.youtube.com/feeds/videos.xml?channel_id=UCzZiFG_Z5ZaiwknfQXE9I_w "~Alienizer" "(YouTube 'Gaming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCto7D1L-MiRoOziCXK9uT5Q "~Let's Game It Out" "(YouTube 'Gaming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCS5tt2z_DFvG7-39J3aE-bQ "~Life of Boris" "(YouTube 'Gaming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCNNgTlE4qN0J9oJb0lpLMqw "~Iggy Plejer" "(YouTube 'Gaming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCaoiUeZllBKcQlNi5DREjYg "~Open Source Games" "(YouTube 'Gaming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCQkd05iAYed2-LOmhjzDG6g "~LowSpecGamer" "(YouTube 'Gaming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCRHXUZ0BxbkU2MYZgsuFgkQ "~The Spiffing Brit" "(YouTube 'Gaming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCJvhxlROfb5lqj-G5UF3l_w "~PaluluMan" "(YouTube 'Gaming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC7WDD6yHgzdqijHluCi1z-Q "~The Act Man" "(YouTube 'Gaming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCRMtvC-xlw73JFF3B4tm90Q "~Wobedy" "(YouTube 'Gaming')"
+
+# Osu
+https://www.youtube.com/feeds/videos.xml?channel_id=UCdKj9DVjxl-Wwkbp-3zTU1g "~Binfy" "(YouTube 'Osu!')"
+
+# Programming Youtube
+https://www.youtube.com/feeds/videos.xml?channel_id=UCYNrBrBOgTfHswcz2DdZQFA "~DaFluffyPotato" "(YouTube 'Programming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCfiC4q3AahU4Io-s83-CIbQ "~codergopher" "(YouTube 'Programming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCl7dSJloxuCa9IBFml7sakw "~PolyMars" "(YouTube 'Programming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCz3l6nyODzXLzTxIkARZ8rw "~Barji" "(YouTube 'Programming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCIabPXjvT5BVTxRDPCBBOOQ "~Dani" "(YouTube 'Programming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCzmtKpQQyZ-9ZNY_bbFtVHw "~Dani2" "(YouTube 'Programming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCKSbq7Xq8UWeWx4lv7MdG2A "~BadGameDev" "(YouTube 'Programming')"
+https://www.youtube.com/feeds/videos.xml?channel_id=UChl_NKOs1qqh_x7yJfaDpDw "~Tantan" "(YouTube 'Programming')"
+
+
+# Linux
+https://www.youtube.com/feeds/videos.xml?channel_id=UCMiyV_Ib77XLpzHPQH_q0qQ "~Veronica Explains" "(YouTube Linux)"

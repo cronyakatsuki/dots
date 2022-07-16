@@ -1,0 +1,13 @@
+#!/bin/bash
+
+while read -a Line; do
+    if [ "${Line[0]}" == 'WM_CLASS(STRING)' ]; then
+        class=${Line[3]}
+
+        break
+    fi
+done <<< "$(xprop)"
+
+quick-notify "Class name: $class" "Copied to clipboard"
+
+printf '%s' "$class" | xclip -sel clip

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ "$1" == "set" ]; then
+    riverctl send-layout-cmd stacktile "all_primary true"
+    riverctl send-layout-cmd stacktile "primary_sublayout full"
+elif [ "$1" == "restore" ]; then
+    riverctl send-layout-cmd stacktile "all_primary false"
+    riverctl send-layout-cmd stacktile "primary_sublayout rows"
+fi

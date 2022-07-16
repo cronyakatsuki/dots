@@ -1,0 +1,9 @@
+#!/bin/sh
+
+killall dunst
+killall acpi-listener
+
+dunst &
+disown $1
+acpi-listener &
+disown $1

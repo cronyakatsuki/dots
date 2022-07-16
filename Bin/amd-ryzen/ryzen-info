@@ -1,0 +1,130 @@
+#!/bin/bash
+
+ryzen_info () {
+    while read -a Line; do
+        if [ "${Line[0]} ${Line[1]} ${Line[2]}" == '| STAPM LIMIT' ]; then
+            StapmLimit=${Line[4]}
+        fi
+        if [ "${Line[0]} ${Line[1]} ${Line[2]}" == '| STAPM VALUE' ]; then
+            StapmValue=${Line[4]}
+        fi
+        if [ "${Line[0]} ${Line[1]} ${Line[2]} ${Line[3]}" == '| PPT LIMIT FAST' ]; then
+            FastLimit=${Line[5]}
+        fi
+        if [ "${Line[0]} ${Line[1]} ${Line[2]} ${Line[3]}" == '| PPT VALUE FAST' ]; then
+            FastValue=${Line[5]}
+        fi
+        if [ "${Line[0]} ${Line[1]} ${Line[2]} ${Line[3]}" == '| PPT LIMIT SLOW' ]; then
+            SlowLimit=${Line[5]}
+        fi
+        if [ "${Line[0]} ${Line[1]} ${Line[2]} ${Line[3]}" == '| PPT VALUE SLOW' ]; then
+            SlowValue=${Line[5]}
+        fi
+        if [ "${Line[0]} ${Line[1]} ${Line[2]} ${Line[3]}" == '| EDC LIMIT VDD' ]; then
+            VrmMaxCurrent=${Line[5]}
+        fi
+        if [ "${Line[0]} ${Line[1]} ${Line[2]} ${Line[3]}" == '| EDC VALUE VDD' ]; then
+            VrmMaxValue=${Line[5]}
+        fi
+        if [ "${Line[0]} ${Line[1]} ${Line[2]} ${Line[3]}" == '| THM LIMIT CORE' ]; then
+            TctlTempLimit=${Line[5]}
+        fi
+        if [ "${Line[0]} ${Line[1]} ${Line[2]} ${Line[3]}" == '| THM VALUE CORE' ]; then
+            TctlTempValue=${Line[5]}
+
+            break
+        fi
+
+    done <<< "$(sudo ryzenadj -i)"
+}
+
+print_pretty () {
+        printf 'Stapm limit %s/%s W\n' $StapmValue $StapmLimit
+        printf 'Slow limit %s/%s W\n' $SlowValue $SlowLimit
+        printf 'Fast limit %s/%s W\n' $FastValue $FastLimit
+        printf 'Vrm Max Current %s/%s A\n' $VrmMaxValue $VrmMaxCurrent
+        printf 'TctlTempLimit %s/%s C°\n' $TctlTempValue $TctlTempLimit
+}
+
+write_log_header () {
+    printf '%s\n' "$(date '+%d.%m %H:%M:%S') | Stapm Value | Slow Value | Fast Value | Vrm Max Value | Tctl Temp Value" > log.txt
+}
+
+write_to_log () {
+    printf '%s\n' "$(date '+%d.%m %H:%M:%S') | $StapmValue | $SlowValue | $FastValue | $VrmMaxValue | $TctlTempValue" >> log.txt
+}
+
+killed_calculations () {
+    printf '\n%s\n%s\n' "LOGGING FINISHED" "CALCULATED INFO" >> log.txt
+
+    stapmValues=$(awk '{ print $4 }' log.txt | sed 1d)
+    stapmMinimal=$(printf '%s\n' "$stapmValues" | sort -n | head -1)
+    stapmAverage=$(printf '%s\n' $stapmValues | awk '{ total += $0; count++ } END { print total/count }')
+    stapmMaximum=$(printf '%s\n' $stapmValues | sort -n | tail -1)
+
+    slowValues=$(awk '{ print $6 }' log.txt | sed 1d)
+    slowMinimal=$(printf '%s\n' $slowValues | sort -n | head -1)
+    slowAverage=$(printf '%s\n' $slowValues | awk '{ total += $0; count++ } END { print total/count }')
+    slowMaximum=$(printf '%s\n' $slowValues | sort -n | tail -1)
+
+    fastValues=$(awk '{ print $8 }' log.txt | sed 1d)
+    fastMinimal=$(printf '%s\n' $fastValues | sort -n | head -1)
+    fastAverage=$(printf '%s\n' $fastValues | awk '{ total += $0; count++ } END { print total/count }')
+    fastMaximum=$(printf '%s\n' $fastValues | sort -n | tail -1)
+
+    vrmValues=$(awk '{ print $10 }' log.txt | sed 1d)
+    vrmMinimal=$(printf '%s\n' $vrmValues | sort -n | head -1)
+    vrmAverage=$(printf '%s\n' $vrmValues | awk '{ total += $0; count++ } END { print total/count }')
+    vrmMaximum=$(printf '%s\n' $vrmValues | sort -n | tail -1)
+
+    tctlValues=$(awk '{ print $12 }' log.txt | sed 1d)
+    tctlMinimal=$(printf '%s\n' $tctlValues | sort -n | head -1)
+    tctlAverage=$(printf '%s\n' $tctlValues | awk '{ total += $0; count++ } END { print total/count }')
+    tctlMaximum=$(printf '%s\n' $tctlValues | sort -n | tail -1)
+
+    printf '%s\n' "Minimal | $stapmMinimal | $slowMinimal | $fastMinimal | $vrmMinimal | $tctlMinimal)" >> log.txt
+    printf '%s\n' "Average | $stapmAverage | $slowAverage | $fastAverage | $vrmAverage | $tctlAverage)" >> log.txt
+    printf '%s\n' "Maximum | $stapmMaximum | $slowMaximum | $fastMaximum | $vrmMaximum | $tctlMaximum)" >> log.txt
+
+    exit
+}
+
+log () {
+    [ ! -f "log.txt" ] && write_log_header
+
+    line_count=$(< log.txt | wc -l)
+
+    [ "$line_count" == "0" ] && write_log_header
+
+    trap killed_calculations SIGINT
+    trap killed_calculations SIGTERM
+
+    while true; do
+        ryzen_info
+        write_to_log
+        sleep 5
+    done
+}
+
+if [ -z "$@" ];then 
+    ryzen_info
+    print_pretty
+    exit
+fi
+
+if [ "$@" == "-l" ]; then
+    log
+fi
+
+if [ "$@" == "-c" ]; then
+    while true
+    do
+        ryzen_info
+        print_pretty
+        sleep 5
+        printf '%s\n'
+    done
+fi
+
+printf '%s\n' "That option doesnt exist"
+exit 1

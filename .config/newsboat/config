@@ -1,0 +1,48 @@
+# Config by
+  # ____                            _    _         _             _    _
+ # / ___|_ __ ___  _ __  _   _     / \  | | ____ _| |_ ___ _   _| | _(_)
+# | |   | '__/ _ \| '_ \| | | |   / _ \ | |/ / _` | __/ __| | | | |/ / |
+# | |___| | | (_) | | | | |_| |  / ___ \|   < (_| | |_\__ \ |_| |   <| |
+ # \____|_|  \___/|_| |_|\__, | /_/   \_\_|\_\__,_|\__|___/\__,_|_|\_\_|
+                       # |___/
+
+unbind-key j
+unbind-key k
+unbind-key h
+unbind-key H
+unbind-key L
+unbind-key c
+
+bind-key g home
+bind-key G end
+bind-key a toggle-article-read
+bind-key n next-unread
+bind-key N prev-unread
+bind-key D pb-download
+bind-key U show-urls
+bind-key x pb-delete
+auto-reload yes
+auto-reload yes
+reload-threads 5
+
+browser "dmenu-link-handler $U"
+
+color background          color236   default
+color listnormal          color248   default
+color listnormal_unread   color6     default
+color listfocus           color1     default
+color listfocus_unread    color2     default
+color info                color248   default
+color article             color248   default
+
+# highlights
+highlight article "^(Feed|Link):.*$" color6 default bold
+highlight article "^(Title|Date|Author):.*$" color6 default bold
+highlight article "https?://[^ ]+" color10 default underline
+highlight article "\\[[0-9]+\\]" color10 default bold
+highlight article "\\[image\\ [0-9]+\\]" color10 default bold
+highlight feedlist "^─.*$" color6 color236 bold
+
+download-path "~/Downloads"
+max-downloads 2
+player "mpv"

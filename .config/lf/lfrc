@@ -1,0 +1,122 @@
+set ratios 1:2:3
+# Config by
+  # ____                            _    _         _             _    _
+ # / ___|_ __ ___  _ __  _   _     / \  | | ____ _| |_ ___ _   _| | _(_)
+# | |   | '__/ _ \| '_ \| | | |   / _ \ | |/ / _` | __/ __| | | | |/ / |
+# | |___| | | (_) | | | | |_| |  / ___ \|   < (_| | |_\__ \ |_| |   <| |
+ # \____|_|  \___/|_| |_|\__, | /_/   \_\_|\_\__,_|\__|___/\__,_|_|\_\_|
+                       # |___/
+
+# Basic Settings
+set preview true
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/cleaner
+set drawbox true
+set icons true
+set ignorecase true
+
+set shell zsh
+set shellopts '-euy'
+set ifs "\n"
+set filesep "\n"  # default already
+
+# remove some of the default bindings
+map n
+map m
+map o
+map "'"
+map '"'
+map d
+map c
+map e
+map f
+
+# Basic Functions
+map . set hidden!
+map <delete> delete
+map p paste
+map d cut
+map y copy
+map r rename
+map R reload
+map C clear
+map U unselect
+
+cmd open ${{
+    $HOME/.config/lf/opener "$f"
+}}
+map <enter> open
+
+# Different file openings
+map ee $$EDITOR "$f"
+map er $$READER "$f"
+map eb $$BOOK_READER "$f"
+
+# make directory
+cmd mkdir ${{
+  printf "Directory Name: "
+  read ans
+  mkdir "$ans"
+}}
+
+map md mkdir
+
+# make file
+cmd mkfile ${{
+  printf "File Name: "
+  read ans
+  $EDITOR "$ans"
+}}
+
+map mf mkfile
+
+# make programs executable
+cmd chmod ${{
+  printf "Mode Bits: "
+  read ans
+
+  for file in "$fx"
+  do
+    chmod $ans "$file"
+  done
+}}
+
+map ch chmod
+
+# Archive
+cmd unarchive ${{
+    printf "Extracting:"
+
+    for file in "$fx"
+    do
+        aunpack "$file"
+    done
+}}
+
+map au unarchive
+
+# git support
+cmd git_branch ${{
+    git branch | fzf | xargs git checkout 
+    pwd_shell=$(pwd)
+    lf -remote "send $id updir"
+    lf -remote "send $id cd \"$pwd_shell\""
+}}
+map gb :git_branch
+map gp ${{clear; git pull --rebase || true; echo "press ENTER"; read ENTER}}
+map gs ${{clear; git status; echo "press ENTER"; read ENTER}}
+map gl ${{clear; git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit}}
+
+cmd on-cd &{{
+    # display git repository status in your prompt
+    source /usr/share/git/completion/git-prompt.sh
+    GIT_PS1_SHOWDIRTYSTATE=auto
+    GIT_PS1_SHOWSTASHSTATE=auto
+    GIT_PS1_SHOWUNTRACKEDFILES=auto
+    GIT_PS1_SHOWUPSTREAM=auto
+    GIT_PS1_COMPRESSSPARSESTATE=auto
+    git=$(__git_ps1 " [GIT BRANCH:> %s]") || true
+    fmt="\033[32;1m%u@%h\033[0m:\033[34;1m%w\033[0m\033[33;1m$git\033[0m"
+    lf -remote "send $id set promptfmt \"$fmt\""
+}}
+

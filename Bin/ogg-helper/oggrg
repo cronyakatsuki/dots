@@ -1,0 +1,16 @@
+#!/bin/env bash
+
+gained="0"
+for Dir in *; {
+    if cd "$Dir" 2> /dev/null; then
+        for File in *.ogg; {
+            [ -f "$File" ] || continue
+            gained="$(($gained + 1))"
+            vorbisgain -f "$File"
+        }
+
+        cd ..
+    fi
+}
+
+echo "Replay gained: $gained"

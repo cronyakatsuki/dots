@@ -1,0 +1,16 @@
+#!/bin/env bash
+
+# Temp=$(sensors | awk '/^Tctl:/ {print  $2 }')
+
+. sb-theme
+
+while read -a Line; do
+    if [ "${Line[0]}" == 'Tctl:' ]; then
+        Temp=${Line[1]}
+
+        break
+    fi
+done <<< "$(sensors)"
+
+Val=${Temp:1:-4}
+display "$Temp" $1 "$Val"

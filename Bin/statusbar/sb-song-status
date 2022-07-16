@@ -1,0 +1,10 @@
+#!/bin/sh
+
+status=$(mpc status | sed -n '/playing/p' | cut -c2-8 | sed 's/^[ \t]*//')
+
+if [ "$status" = "playing" ]; then # If song is playing
+    printf "%s\n" "契"
+else
+    printf "%s\n" ""
+fi
+

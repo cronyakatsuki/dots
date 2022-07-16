@@ -1,0 +1,7 @@
+#!/bin/sh
+
+. sb-theme
+
+val=$(printf " %.0f\n" $(brillo -q -G))
+
+display "$val" $1

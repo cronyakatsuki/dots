@@ -1,0 +1,15 @@
+#!/bin/sh
+
+other(){
+	case "$(printf "%s\n" "$(readlink -f "$1")" | awk '{print tolower($0)}')" in
+		# *.cbz|*.cbr|*.cbt|*.epub|*.pdf) termpdf.py "$1";;
+		*) xdg-open "$1" 2>/dev/null ;;
+	esac
+}
+
+case $(file --mime-type "$1" -bL) in
+	text/*|application/json) $EDITOR "$1";;
+    image/*) nsxiv-rifle "$1";;
+	*) other "$1" ;;
+esac
+exit 0

@@ -1,0 +1,14 @@
+#/bin/sh
+
+_enter () {
+    riverctl enter-mode floating
+    riverctl default-layout none
+}
+
+_exit () {
+    riverctl enter-mode normal
+    riverctl default-layout stacktile
+}
+
+[ "$1" == "enter" ] && _enter 
+[ "$1" == "exit" ] && _exit

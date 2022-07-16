@@ -1,0 +1,11 @@
+.config/mpv/scripts/
+.config/mpv/watch_later/
+.config/qtile/__pycache__/
+.config/qtile/widgets/__pycache__/
+.config/qtile/.*
+.config/zsh/plugins/
+.config/zsh/.zcompdump
+.newsboat/*.lock
+.config/mpd/database
+.config/mpd/pid
+.config/mpd/sticker.sql

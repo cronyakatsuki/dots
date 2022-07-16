@@ -1,0 +1,15 @@
+#!/bin/sh
+# Toggles a problem on and off
+
+ID=$(pgrep "$1")
+
+if [ -z "$ID" ]; then
+    "$@" &
+    sleep 1; disown $1
+    quick-notify "Program Restarter" "$1 started"
+else
+    killall $1
+    "$@" &
+    sleep 1; disown $1
+    quick-notify "Program Restarter" "$1 restarted"
+fi

@@ -1,0 +1,33 @@
+doom_one = {
+    'bg1':  '#282c34',
+    'bg2':  '#3e4451',
+    'bg3':  '#1c1f24',
+    'fg1':  '#bbc2cf',
+    'fg2':  '#dfdfdf',
+    'bl1':  '#51afef',
+    'bl2':  '#2257a0',
+    'mg1':  '#c678dd',
+    'mg2':  '#a9a1e1',
+    'gr1':  '#5699af',
+    'gr2':  '#4db5bd',
+    'rd':   '#ff6c6b',
+    'or':   '#da8548',
+    'yl':   '#ecbe7b',
+}
+
+catppuccino = {
+    'bg1':  '#1E1E2E',
+    'bg2':  '#575268',
+    'bg3':  '#161320',
+    'fg1':  '#D9E0EE',
+    'fg2':  '#C3BAC6',
+    'bl1':  '#96CDFB',
+    'bl2':  '#89DCEB',
+    'mg1':  '#F5C2E7',
+    'mg2':  '#E8A2AF',
+    'gr1':  '#ABE9B3',
+    'gr2':  '#B5E8E0',
+    'rd':   '#F28FAD',
+    'or':   '#F8BD96',
+    'yl':   '#FAE3B0',
+}

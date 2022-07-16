@@ -1,0 +1,35 @@
+#!/bin/env bash
+
+total_files="0"
+renamed="0"
+no_changes="0"
+for Dir in *; {
+    if cd "$Dir" 2> /dev/null; then
+        for File in *.ogg; {
+            if [ -f "$File" ] ; then {
+                total_files="$(($total_files + 1))"
+            
+                ARTIST=$(vorbiscomment -l "$File" | grep 'ARTIST' | cut -c8- | sed 's/\// /g')
+                TITLE=$(vorbiscomment -l "$File" | grep 'TITLE' | cut -c7- | sed 's/\// /g')
+
+                if [ "$File" != "$ARTIST - $TITLE.ogg" ] ; then {
+                    echo "Renaming"
+                    mv "$File" "$ARTIST - $TITLE.ogg"
+                    echo "$ARTIST - $TITLE.ogg"
+                    renamed="$(($renamed + 1))"
+                } else {
+                echo "Named corectly: $File"
+                no_changes="$(($no_changes + 1))"
+                } fi
+
+            } fi
+
+        }
+
+        cd ..
+    fi
+}
+
+echo "Total: $total_files
+Rename: $renamed
+No changes: $no_changes"

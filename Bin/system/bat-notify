@@ -1,0 +1,11 @@
+#!/bin/env bash
+
+function send_notification() {
+    dunstify -a "battery" -u low -r "9994" "Battery" "Status: ${status}" -t 10000
+}
+
+case "$(< /sys/class/power_supply/BAT1/status)" in
+	"Full") status="Full"; send_notification ;;
+	"Discharging") status="Discharging"; send_notification ;;
+	"Charging") status="Charging"; send_notification ;;
+esac

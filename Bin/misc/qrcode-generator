@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# QR code generator using a curl support tool qrenco.de
+
+curl qrenco.de/$1

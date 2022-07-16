@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Feed this script a link or it will get it from your clipboard and it will give dmenu
+# with some choice of programs to open the link with.
+
+declare -a games=(
+    "Quit"
+    "bastet"
+    "bs"
+    "nsnake"
+    "moon-buggy"
+    "ascii-patrol"
+)
+
+choice=$(printf '%s\n' "${games[@]}" | fzf --ansi --unicode --reverse --prompt "Choose cli games to play: ")
+
+[ "$choice" == "Quit" ] && exit
+
+$choice

@@ -1,0 +1,49 @@
+#!/bin/sh
+
+volume_color() {
+	if [ "$1" -gt "65" ]; then
+		color="#ff6c6b"
+	elif [ "$1" -lt "30" ]; then
+		color="#5699af"
+	else
+		color="#da8548"
+	fi
+}
+
+temp_color() {
+	if [ "$1" -gt "70" ]; then
+		color="#ff6c6b"
+	elif [ "$1" -lt "45" ]; then
+		color="#5699af"
+	else
+		color="#da8548"
+	fi
+}
+
+optimus_color() {
+    if [ "$1" = "DGPU" ]; then
+        color="#98be65"
+    elif [ "$1" = "IGPU" ]; then
+        color="#ff6c6b"
+    elif [ "$1" = "HYBRID" ]; then
+        color"#528bff"
+    fi
+}
+
+display() {
+    if [ "$2" = "dwmblocks" ];then
+	    case "$(basename $0)" in
+		    sb-cpu-temp) temp_color $3 ;;
+		    sb-optimus) optimus_color $1 ;;
+		    sb-ram) color="#51afef" ;;
+		    sb-wifi) color="#a9a1e1" ;;
+		    sb-batterry) color="#4db5bd" ;;
+		    sb-datetime) color="#c678dd" ;;
+		    sb-volume) volume_color $3 ;;
+		    *) color="#ecbe7b" ;;
+	    esac
+        printf '^c%s^%s^d^\n' "$color" "$1"
+    else
+        printf '%s\n' "[$1]"
+    fi
+}

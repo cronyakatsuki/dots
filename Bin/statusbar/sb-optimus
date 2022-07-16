@@ -1,0 +1,16 @@
+#!/bin/bash
+
+mode=$(envycontrol -q | awk '{ print $5 }')
+nv_screen="eDP-1-0"
+screen="eDP"
+
+. sb-theme
+
+if [ "$mode" = "nvidia" ]; then
+    display "DGPU" $1
+elif [ "$mode" = "integrated" ]; then
+    display "IGPU" $1
+elif [ "$mode" = "hybrid" ]; then
+    display "HYBRID" $1
+fi
+

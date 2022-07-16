@@ -1,0 +1,117 @@
+# Config by
+#   ____                            _    _         _             _    _
+#  / ___|_ __ ___  _ __  _   _     / \  | | ____ _| |_ ___ _   _| | _(_)
+# | |   | '__/ _ \| '_ \| | | |   / _ \ | |/ / _` | __/ __| | | | |/ / |
+# | |___| | | (_) | | | | |_| |  / ___ \|   < (_| | |_\__ \ |_| |   <| |
+#  \____|_|  \___/|_| |_|\__, | /_/   \_\_|\_\__,_|\__|___/\__,_|_|\_\_|
+#                        |___/
+
+# dooom one theme
+
+# set notification-error-bg       "#282c34" # bg
+# set notification-error-fg       "#ff6c6b" # bright:red
+# set notification-warning-bg     "#282c34" # bg
+# set notification-warning-fg     "#da8548" # bright:yellow
+# set notification-bg             "#282c34" # bg
+# set notification-fg             "#98be65" # bright:green
+#
+# set completion-bg               "#3e4451" # bg2
+# set completion-fg               "#bbc2cf" # fg
+# set completion-group-bg         "#1c1f24" # bg1
+# set completion-group-fg         "#5b6268" # gray
+# set completion-highlight-bg     "#51afef" # bright:blue
+# set completion-highlight-fg     "#3e4451" # bg2
+#
+# # Define the color in index mode
+# set index-bg                    "#3e4451" # bg2
+# set index-fg                    "#bbc2cf" # fg
+# set index-active-bg             "#51afef" # bright:blue
+# set index-active-fg             "#3e4451" # bg2
+#
+# set inputbar-bg                 "#282c34" # bg
+# set inputbar-fg                 "#bbc2cf" # fg
+#
+# set statusbar-bg                "#3e4451" # bg2
+# set statusbar-fg                "#bbc2cf" # fg
+#
+# set highlight-color             "#da8548" # bright:yellow
+# set highlight-active-color      "#ecbe7b" # bright:orange
+#
+# set default-bg                  "#282c34" # bg
+# set default-fg                  "#bbc2cf" # fg
+# set render-loading              true
+# set render-loading-bg           "#282c34" # bg
+# set render-loading-fg           "#bbc2cf" # fg
+#
+# # Recolor book content's color
+# set recolor-lightcolor          "#282c34" # bg
+# set recolor-darkcolor           "#bbc2cf" # fg
+
+# catppuccin
+set default-fg 			    "#d9e0ee"
+set default-bg 			    "#1e1d2f"
+
+set completion-bg		    "#302d41"
+set completion-fg		    "#d9e0ee"
+set completion-highlight-bg	"#575268"
+set completion-highlight-fg	"#d9e0ee"
+set completion-group-bg		"#302d41"
+set completion-group-fg		"#96cdfb"
+
+set statusbar-fg		    "#d9e0ee"
+set statusbar-bg		    "#302d41"
+
+set notification-bg		    "#302d41"
+set notification-fg		    "#d9e0ee"
+set notification-error-bg	"#302d41"
+set notification-error-fg	"#f28fad"
+set notification-warning-bg	"#302d41"
+set notification-warning-fg	"#fae3b0"
+
+set inputbar-fg			    "#d9e0ee"
+set inputbar-bg 		    "#302d41"
+
+set recolor-lightcolor		"#1e1d2f"
+set recolor-darkcolor		"#d9e0ee"
+
+set index-fg			    "#d9e0ee"
+set index-bg			    "#1e1d2f"
+set index-active-fg		    "#d9e0ee"
+set index-active-bg		    "#302d41"
+
+set render-loading-bg		"#1e1d2f"
+set render-loading-fg		"#d9e0ee"
+
+set highlight-color		    "#575268"
+set highlight-fg            "#f5c2e7"
+set highlight-active-color	"#f5c2e7"
+
+set recolor                     true
+set recolor-keephue             true
+set recolor-reverse-video       true
+
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
+
+# fullscreen mappings
+map [fullscreen] r reload
+map [fullscreen] R rotate
+map [fullscreen] + zoom in
+map [fullscreen] - zoom out
+map [fullscreen] i recolor
+
+# normal mappings
+map  r reload
+map R rotate
+map + zoom in
+map - zoom out
+map i recolor
+
+set font "FiraCode Nerd Font 12"
+set adjust-open "best-fit"
+set pages-per-row 1
+set scroll-page-aware "true"
+set scroll-full-overlap 0.01
+set scroll-step 100
+

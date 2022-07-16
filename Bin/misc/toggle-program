@@ -1,0 +1,11 @@
+#!/bin/sh
+# Toggles a problem on and off
+
+ID=$(pgrep "$1")
+
+if [ -z "$ID" ]; then
+    "$@" & disown $1
+    quick-notify "Program Toggler" "$1 started"
+else
+    killall $1 && quick-notify "Program Toggler" "$1 killed"
+fi

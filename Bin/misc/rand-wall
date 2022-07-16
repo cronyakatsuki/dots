@@ -1,0 +1,31 @@
+#!/bin/env python3
+
+from os import listdir
+from os.path import isfile, join
+from random import choice
+from subprocess import call
+from time import sleep
+
+def set_random_wallapper(wallpapers, path):
+    wallpaper = choice(wallpapers)
+    call(['xwallpaper', '--stretch', join(path, wallpaper)])
+    wallpapers.pop(wallpapers.index(wallpaper))
+    sleep(30 * 60)
+
+def get_list_of_wallpapers(path):
+    return [f for f in listdir(path) if isfile(join(path, f))]
+
+def main():
+    path='/home/ivica/Pictures/wallpapers/'
+
+    wallpapers = get_list_of_wallpapers(path)
+
+    while True:
+        if len(wallpapers) > 0:
+            set_random_wallapper(wallpapers, path)
+        else:
+            wallpapers = get_list_of_wallpapers(path)
+            set_random_wallapper(wallpapers, path)
+
+if __name__ == '__main__':
+    main()

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+for File in *.cue
+do
+    [ -f "$File" ] || continue
+    chdman createcd -i "$File" -o "${File%.cue}.chd"
+done
+
+for File in *.iso
+do
+    [ -f "$File" ] || continue
+    chdman createcd -i "$File" -o "${File%.iso}.chd"
+done

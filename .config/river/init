@@ -1,0 +1,172 @@
+#!/bin/sh
+
+# Set background and border color
+riverctl background-color 0x1E1E2E
+riverctl border-width 3
+riverctl border-color-focused 0x96CDFB
+riverctl border-color-unfocused 0x161320
+riverctl border-color-urgent 0xF28FAD
+
+# autostart section
+riverctl spawn "wlr-randr --output eDP-1 --scale 1.25"
+riverctl spawn "wbg /usr/share/backgrounds/catppuccin-wallpapers/landscapes/Cloudsnight.jpg"
+riverctl spawn "mouse_detect.sh wayland"
+riverctl spawn dunst
+riverctl spawn gtk-settings-load
+riverctl spawn waybar
+
+# -->input setup<--
+
+# touchpad
+riverctl input pointer-1267-12610-ELAN0515:01_04F3:3142_Touchpad tap enabled
+riverctl input pointer-1267-12610-ELAN0515:01_04F3:3142_Touchpad click-method clickfinger
+riverctl input pointer-1267-12610-ELAN0515:01_04F3:3142_Touchpad natural-scroll enabled
+riverctl input pointer-1267-12610-ELAN0515:01_04F3:3142_Touchpad scroll-method edge
+# mouse
+riverctl input pointer-1578-16734-MOSART_Semi._2.4G_INPUT_DEVICE_Mouse accel-profile flat
+riverctl input pointer-1578-16734-MOSART_Semi._2.4G_INPUT_DEVICE_Mouse pointer-accel 0
+
+# Set keyboard repeat rate
+riverctl set-repeat 50 300
+
+# hide mouse after 5 secs
+riverctl hide-cursor timeout 5000
+riverctl xcursor-theme Catppuccin-Mocha-Red-Cursors
+
+# mode's declaration
+riverctl declare-mode floating
+
+# -->keybindings<--
+
+# # Super+F to enter floating mode
+riverctl map normal Super F spawn "river-float enter"
+
+# # Super+F to return to normal mode
+riverctl map floating Super F spawn "river-float exit"
+
+# --> program spawning
+# Enable max mode
+riverctl map normal Super M spawn "river-max set"
+
+# Disable max mode
+riverctl map normal Super M spawn "river-max restore"
+
+# Super+Shift+J and Super+Shift+K to swap the focused view with the next/previous
+# view in the layout stack
+riverctl map normal Super+Shift Down swap next
+riverctl map normal Super+Shift Up swap previous
+
+# Super+Return to bump the focused view to the top of the layout stack
+riverctl map normal Super+Shift Return zoom
+
+for mode in normal floating
+do
+    # Super+Shift+Return to start an instance of kitty
+    riverctl map $mode Super Return spawn $TERMINAL
+
+    # Super+Shift+Return to start an instance of kitty
+    riverctl map $mode Super B spawn $BROWSER
+
+    # Super+Shift+Return to start an instance of kitty
+    riverctl map $mode Super N spawn "$TERMINAL -e newsboat"
+
+    # lock screen
+    riverctl map $mode Super L spawn 'swaylock'
+
+    # Super+Shift+Return to start an instance of kitty
+    riverctl map $mode Super F12 spawn dmenu-ryzenadj
+
+    # Super+Shift+Return to start an instance of kitty
+    riverctl map $mode Super D spawn dmenu_run
+
+    # Super+Alt+{H,J,K,L} to move views
+    riverctl map $mode Super+Alt Left move left 100
+    riverctl map $mode Super+Alt Down move down 100
+    riverctl map $mode Super+Alt Up move up 100
+    riverctl map $mode Super+Alt Right move right 100
+
+    # Super+Alt+Shift+{H,J,K,L} to resize views
+    riverctl map $mode Super+Alt+Shift Left resize horizontal -100
+    riverctl map $mode Super+Alt+Shift Down resize vertical 100
+    riverctl map $mode Super+Alt+Shift Up resize vertical -100
+    riverctl map $mode Super+Alt+Shift Right resize horizontal 100
+
+    # Super + Left Mouse Button to move views
+    riverctl map-pointer $mode Super BTN_LEFT move-view
+
+    # Super + Right Mouse Button to resize views
+    riverctl map-pointer $mode Super BTN_RIGHT resize-view
+
+    # Toggle last tag
+    riverctl map $mode Super Tab focus-previous-tags
+
+    # Super+J and Super+K to focus the next/previous view in the layout stack
+    riverctl map $mode Super Down focus-view next
+    riverctl map $mode Super Up focus-view previous
+
+    # Super+Shift+Return to start an instance of kitty
+    riverctl map $mode Super+Shift E spawn dmenu-power-menu
+
+    # Super+Shift+Q to close the focused view
+    riverctl map $mode Super+Shift Q close
+
+    # Super+Shift+E to exit river
+    riverctl map $mode Super+Control E exit
+
+    for i in $(seq 1 9)
+    do
+        tags=$((1 << ($i - 1)))
+
+        # Super+[1-9] to focus tag [0-8]
+        riverctl map $mode Super $i set-focused-tags $tags
+
+        # Super+Shift+[1-9] to tag focused view with tag [0-8]
+        riverctl map $mode Super+Shift $i set-view-tags $tags
+    done
+
+    # Super+F11 to toggle fullscreen
+    riverctl map $mode Super F11 toggle-fullscreen
+done
+
+# Super+Shift+Space to toggle float
+riverctl map normal Super+Shift Space toggle-float
+
+# Super+H and Super+L to decrease/increase the main ratio of rivertile(1)
+riverctl map normal Super Left send-layout-cmd stacktile "primary_ratio -0.05"
+riverctl map normal Super Right send-layout-cmd stacktile "primary_ratio +0.05"
+
+# Super+Shift+H and Super+Shift+L to increment/decrement the main count of rivertile(1)
+riverctl map normal Super+Shift Left send-layout-cmd stacktile "primary_count +1"
+riverctl map normal Super+Shift Right send-layout-cmd stacktile "primary_count -1"
+
+# Various media key mapping examples for both normal and locked mode which do
+# not have a modifier
+for mode in normal locked floating
+do
+    # Control pulse audio volume with pamixer (https://github.com/cdemoulins/pamixer)
+    riverctl map $mode None XF86AudioRaiseVolume  spawn 'sb-volume-update up'
+    riverctl map $mode None XF86AudioLowerVolume  spawn 'sb-volume-update down'
+    riverctl map $mode None XF86AudioMute         spawn 'sb-volume-update mute'
+
+    # Control MPRIS aware media players with playerctl (https://github.com/altdesktop/playerctl)
+    riverctl map $mode None XF86AudioPlay  spawn 'dmenu-playerctl play-pause'
+    riverctl map $mode None XF86AudioPrev  spawn 'dmenu-playerctl previous'
+    riverctl map $mode None XF86AudioNext  spawn 'dmenu-playerctl next'
+
+    # Control screen backlight brightness with brillo
+    riverctl map $mode None XF86MonBrightnessUp   spawn 'sb-backlight-update up'
+    riverctl map $mode None XF86MonBrightnessDown spawn 'sb-backlight-update down'
+done
+
+# Make certain views start floating
+# riverctl float-filter-add app-id float
+# riverctl float-filter-add title "popup title with spaces"
+
+# Set app-ids and titles of views which should use client side decorations
+# riverctl csd-filter-add app-id "gedit"
+
+# Set the default layout generator to be rivertile and start it.
+# River will send the process group of the init executable SIGTERM on exit.
+riverctl attach-mode bottom
+riverctl default-layout stacktile
+riverctl spawn "stacktile --inner-padding 6 --outer-padding 5 --per-tag-config --primary-ratio 0.55 --secondary-ratio 0.5"

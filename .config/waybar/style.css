@@ -1,0 +1,130 @@
+/*Global settings*/
+* {
+    border: none;
+    border-radius: 10px;
+    font-family: "JetBrainsMonoMedium Nerd Font";
+    font-size: 11px;
+    /* margin: 1px 1px; */
+}
+
+/* Bar and stuff */
+window#waybar {
+    background: transparent;
+    transition-property: background-color;
+    transition-duration: .3s;
+}
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/* Stuff related to river tags */
+#tags button {
+    background-color: #161320;
+    color: #c6ceef;
+    padding: 0 0px;
+}
+
+#tags button.occupied {
+    background-color: #161320;
+    color: #96CDFB;
+}
+
+#tags button.focused {
+    background-color: #96CDFB;
+    color: #1E1E2E;
+    /* box-shadow: inset 0 0px transparent; */
+}
+
+#tags button.urgent {
+    background-color: #161320;
+    color: #F28FAD;
+}
+
+#tags {
+    margin: 0 1px;
+}
+label:focus {
+    background-color: #1E1E2E;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#network,
+#tray,
+#mode,
+#idle_inhibitor,
+#custom-optimus,
+#custom-cpu-temp
+
+#mode {
+    padding: 0 0.5em;
+    background-color: #96CDFB;
+    color:#161320;
+}
+
+/*  If workspaces is the leftmost module, omit left margin */
+/* .modules-left > widget:first-child > #tags { */
+/*     margin-left: 0; */
+/* } */
+/*  */
+/* If workspaces is the rightmost module, omit right margin */
+/* .modules-right > widget:last-child > #tags { */
+/*     margin-right: 0; */
+/* } */
+
+#cpu {
+    background-color: #161320;
+    color: #96CDFB;
+}
+
+#custom-cpu-temp {
+    background-color: #96CDFB;
+    color: #161320;
+}
+
+#memory {
+    background-color: #161320;
+    color: #96CDFB;
+}
+
+#disk {
+    background-color: #96CDFB;
+    color: #161320;
+}
+
+#battery {
+    background-color: #161320;
+    color: #96CDFB;
+}
+
+#network {
+    background-color: #96CDFB;
+    color: #161320;
+}
+
+#network.disconnected {
+    background-color: #96CDFB;
+    color: #F28FAD;
+}
+
+#clock {
+    background-color: #161320;
+    color: #96CDFB;
+}
+
+#tray {
+    background-color: #575268;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #F28FAD;
+}

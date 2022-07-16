@@ -1,0 +1,7 @@
+#!/bin/sh
+
+. sb-theme
+
+val=$(date '+%d.%m %H:%M')
+
+display " $val" $1
