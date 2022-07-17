@@ -10,9 +10,7 @@ lxsession & disown lxsession
 
 picom --experimental-backends --animations --animation-for-open-window zoom & disown picom
 
-ferdium & disown ferdium
-
-pywal-discord
+# pywal-discord
 
 discord --start-minimized & disown discord
 
