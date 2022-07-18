@@ -1,0 +1,11 @@
+#!/bin/bash
+
+[ ! -z "$2" ] && w="$2" || w=$(($(tput cols) / 2 ))
+[ ! -z "$3" ] && h="$3" || h=$(($(tput lines) / 2 ))
+
+[ ! -z "$4" ] && x="$4" || x=$(($(tput cols) / 2 + 2))
+[ ! -z "$5" ] && y="$5" || y="1"
+
+kitty +icat --clear --silent --transfer-mode file
+kitty +icat --silent --transfer-mode file --align=left --place ${w}x${h}@${x}x${y} "$1"
+exit 1

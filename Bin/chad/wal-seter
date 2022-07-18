@@ -9,7 +9,18 @@ if [ ! -z "$ID" ]; then
 fi
 }
 
-wal -n -i $HOME/Pictures/wallpapers/
+imgdir="$HOME/Pictures/wallpapers/"
+
+wal -c
+
+if [ -z "$@" ]; then
+    wal -n -i $imgdir
+elif [ "$@" == "fzf" ]; then
+    img=$(find $imgdir -type f | sort | fzf --preview="kitty-img-previewer {}" --preview-window=right:50%)
+    [ -z "$img" ] && exit 0 || wal -n -i $img
+else
+    wal -n -i "$@"
+fi
 
 xwallpaper --stretch "$(< "${HOME}/.cache/wal/wal")"
 
