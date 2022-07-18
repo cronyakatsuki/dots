@@ -56,3 +56,7 @@ fopen () {
 frm () {
     rm -r $(find -iname "$@" | fzf)
 }
+
+fga () {
+    git add $(git status -s | awk '{ print $2 }' | fzf -m)
+}
