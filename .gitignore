@@ -9,3 +9,4 @@
 .config/mpd/database
 .config/mpd/pid
 .config/mpd/sticker.sql
+.ncmpcpp/error.log

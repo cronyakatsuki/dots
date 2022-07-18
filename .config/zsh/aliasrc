@@ -31,7 +31,7 @@ alias df='df -h -x devtmpfs -x tmpfs -x usbfs -x loop'                          
 alias free='free -m -h'                      # show sizes in MB
 alias spotdl='spotdl --output-format ogg -p "{artists}/{album}/{artist} - {title}.{ext}" --dt 8 --st 8'
 # alias xmrig='sudo xmrig -c ~/.config/xmrig.json'
-alias pacman-rm-orphans='sudo pacman -Rns $(pacman -Qtdq)'
+alias pacman-rm-orphans='sudo pacman -Rnsc $(pacman -Qtdq)'
 
 # cleaup
 alias mbsync=mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+restart () {
+ID=$(pgrep "$1")
+
+if [ ! -z "$ID" ]; then
+    kill $ID
+    "$@" & disown $1
+fi
+}
+
+wal -n -i $HOME/Pictures/wallpapers/
+
+xwallpaper --stretch "$(< "${HOME}/.cache/wal/wal")"
+
+[ -f /tmp/dwm.lock ] && xdotool key Super+F5
+
+pywalfox update
+
+pywal-discord
+
+cat $HOME/.cache/wal/colors.dunstrc > $HOME/.config/dunst/dunstrc && restart dunst
+
+cat $HOME/.cache/wal/colors.zathurarc > $HOME/.config/zathura/zathurarc

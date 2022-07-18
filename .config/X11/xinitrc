@@ -44,4 +44,6 @@ fi
 
 [ -f "/tmp/dwm.lock" ] && rm /tmp/dwm.lock
 
+wal-seter
+
 exec dwm

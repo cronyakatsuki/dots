@@ -78,8 +78,6 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5b6268,underline"
-
 lfcd () {
     tmp="$(mktemp)"
     lf -last-dir-path="$tmp" "$@"
@@ -94,6 +92,9 @@ bindkey -s '^o' 'lfcd\n'
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+
+# load pywal colors
+source $HOME/.cache/wal/colors.sh
 
 # load my aliases
 [ -f "$XDG_CONFIG_HOME/zsh/aliasrc" ] && source "$XDG_CONFIG_HOME/zsh/aliasrc"
