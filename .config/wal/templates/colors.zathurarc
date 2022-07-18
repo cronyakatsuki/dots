@@ -1,0 +1,54 @@
+set completion-bg "{background}"
+set completion-fg "{foreground}"
+set completion-group-bg "{background}"
+set completion-group-fg "{color2}"
+set completion-highlight-bg "{foreground}"
+set completion-highlight-fg "{background}"
+set recolor-lightcolor "{background}"
+set recolor-darkcolor "{foreground}"
+set default-bg "{background}"
+set inputbar-bg "{background}"
+set inputbar-fg "{foreground}"
+set notification-bg "{background}"
+set notification-fg "{foreground}"
+set notification-error-bg "{color1}"
+set notification-error-fg "{foreground}"
+set notification-warning-bg "{color1}"
+set notification-warning-fg "{foreground}"
+set statusbar-bg "{background}"
+set statusbar-fg "{foreground}"
+set index-bg "{background}"
+set index-fg "{foreground}"
+set index-active-bg "{foreground}"
+set index-active-fg "{background}"
+set render-loading-bg "{background}"
+set render-loading-fg "{foreground}"
+
+set recolor                     true
+set recolor-keephue             true
+set recolor-reverse-video       true
+
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
+
+# fullscreen mappings
+map [fullscreen] r reload
+map [fullscreen] R rotate
+map [fullscreen] + zoom in
+map [fullscreen] - zoom out
+map [fullscreen] i recolor
+
+# normal mappings
+map  r reload
+map R rotate
+map + zoom in
+map - zoom out
+map i recolor
+
+set font "FiraCode Nerd Font 12"
+set adjust-open "best-fit"
+set pages-per-row 1
+set scroll-page-aware "true"
+set scroll-full-overlap 0.01
+set scroll-step 100

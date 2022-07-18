@@ -1,0 +1,114 @@
+[global]
+    monitor = 0
+
+    follow = none
+
+    width = (0,300)
+
+    height = (0,300)
+
+    origin = top-right
+
+    offset = 12x30
+
+    scale = 0
+
+    notification_limit = 0
+
+    progress_bar = true
+
+    progress_bar_height = 10
+
+    progress_bar_frame_width = 1
+
+    progress_bar_min_width = 150
+
+    progress_bar_max_width = 300
+
+    indicate_hidden = no
+
+    transparency = 0
+
+    separator_height = 1
+
+    padding = 12
+
+    horizontal_padding = 14
+
+    text_icon_padding = 20
+
+    frame_width = 2
+
+    frame_color = "{foreground}"
+
+    separator_color = frame
+
+    sort = yes
+
+    font = JetBrainsMonoMedium Nerd Font 10
+
+    line_height = 0
+
+    markup = full
+
+    format = "<b>%s</b>\n%b"
+
+    alignment = left
+
+    vertical_alignment = center
+
+    show_age_threshold = 30
+
+    ellipsize = middle
+
+    ignore_newline = no
+
+    stack_duplicates = true
+
+    hide_duplicate_count = true
+
+    show_indicators = yes
+
+    icon_position = left
+
+    min_icon_size = 0
+
+    max_icon_size = 64
+
+    icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
+
+    sticky_history = no
+
+    history_length = 10
+
+    dmenu = /usr/bin/dmenu -p dunst:
+
+    browser = /usr/bin/xdg-open
+
+    always_run_script = true
+
+    title = Dunst
+
+    class = Dunst
+
+    corner_radius = 0
+
+    ignore_dbusclose = false
+
+    force_xwayland = false
+
+[urgency_low]
+    background = "{background}"
+    foreground = "{foreground}"
+    timeout = 5
+
+[urgency_normal]
+    background = "{background}"
+    foreground = "{foreground}"
+    timeout = 5
+
+[urgency_critical]
+    background = "{background}"
+    foreground = "{foreground}"
+    frame_color = "{color4}"
+    timeout = 10
