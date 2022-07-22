@@ -50,6 +50,9 @@ export CCACHE_DIR="$XDG_CACHE_HOME/ccache"
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 
+# fix minimization with games
+export SDL_VIDEO_MINIMIZE_ON_FOCUS_LOSS=0
+
 # lf icons
 export LF_ICONS="\
 di=:\

@@ -20,14 +20,14 @@ setopt nocheckjobs                                              # Don't warn abo
 setopt nobeep                                                   # No beep
 setopt appendhistory                                            # Immediately append history instead of overwriting
 setopt HIST_IGNORE_ALL_DUPS                                     # Remove duplication off commands
+setopt INC_APPEND_HISTORY                                       # Store commands immediately
+export HISTTIMEFORMAT="[%F %T] "                                # History format
 
 # History settings
 HISTFILE=$HOME/.zhistory
 HISTSIZE=10000
 SAVEHIST=5000
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
-setopt INC_APPEND_HISTORY                                       # Store commands immediately
-export HISTTIMEFORMAT="[%F %T] "                                # History format
 
 # Basic auto/tab complete:
 autoload -U compinit

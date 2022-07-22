@@ -24,11 +24,11 @@ alias sxhkdrc='${=EDITOR} ~/.config/sxhkd/sxhkdrc'
 alias ssd-check="sudo smartctl -a /dev/nvme0n1 | grep -E -- 'Data Units Read:|Data Units Written:|Percentage Used:'"
 alias grep='grep --color=auto'
 alias vi='nvim'
-alias ls='exa -al --color=always --group-directories-first' # my preferred listing
-alias la='exa -a --color=always --group-directories-first'  # all files and dirs
-alias lt='exa -aT --color=always --group-directories-first' # tree listing
+alias ls='/usr/bin/ls -al --color=always --group-directories-first' # my preferred listing
+alias la='/usr/bin/ls -a --color=always --group-directories-first'  # all files and dirs
 alias df='df -h -x devtmpfs -x tmpfs -x usbfs -x loop'                          # human-readable sizes
 alias free='free -m -h'                      # show sizes in MB
+alias nvidia-settings='nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings'
 alias spotdl='spotdl --output-format ogg -p "{artists}/{album}/{artist} - {title}.{ext}" --dt 8 --st 8'
 # alias xmrig='sudo xmrig -c ~/.config/xmrig.json'
 alias pacman-rm-orphans='sudo pacman -Rnsc $(pacman -Qtdq)'
@@ -51,10 +51,6 @@ fcd () {
 
 fopen () {
     xdg-open "$(find -type f | fzf)"
-}
-
-frm () {
-    rm -r $(find -iname "$@" | fzf)
 }
 
 fga () {
